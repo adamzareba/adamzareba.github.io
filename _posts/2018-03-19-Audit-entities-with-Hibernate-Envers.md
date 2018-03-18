@@ -250,7 +250,7 @@ Here’s the database operations log from application log:
 ```
 
 Without any additional code that would handle audit schema operations Hibernate Envers populates automatically data. Like you can see adding new company was tracked in COMPANY_AUD table in revision number 8:
-[![create-simple](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/create_simple.png)]((https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/create_simple.png))
+[![create-simple](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/create_simple.png)](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/create_simple.png)
 
 If we will create company with structure of child objects, like below:
 ```
