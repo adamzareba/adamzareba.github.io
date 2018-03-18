@@ -4,7 +4,7 @@ title: Audit entities with Hibernate Envers
 comments: true
 ---
 
-A lot of applications require tracking or logging changes performed on business data. In case of relational database we can use low-level solution by triggering database table operations. But if you’re building Java application you have easier approach from high level point – Hibernate Envers.
+Applications often require tracking or logging changes performed on business data. In case of relational database we can use low-level solution by triggering database table operations. But if you’re building Java application you have easier approach from high level point – Hibernate Envers.
 
 In this post we are going to demonstrate auditing mechanism for Hibernate persistent entities on example Spring boot + Hibernate Envers project. Auditing will be shown for data in relational databases - example configurations prepared for H2 and PostgreSQL database engines.
 
@@ -71,13 +71,14 @@ public class CompanyController {
 Notice that we won’t modify logic of business code, we won’t change any service responsible for running database operations itself. 
 
 ## Configure Hibernate Envers
-First of all we will setup separate database schema to store audited records, since we’re using Spring boot we can do it like below:
+First of all we will setup separate database schema to store audited records, since we’re using Spring Boot we can do it like below:
 ```properties
 spring.jpa.properties.org.hibernate.envers.default_schema=audit
 ```
 Some other useful properties to be set you can find in [EnversSettings](https://docs.jboss.org/hibernate/orm/5.2/javadocs/org/hibernate/envers/configuration/EnversSettings.html).
+
 Then just add the [@Audited](https://docs.jboss.org/hibernate/orm/5.2/javadocs/org/hibernate/envers/Audited.html) annotation either on an @Entity (to audit the whole entity) or on specific @Columns (if you need to audit specific properties only). It allows for Hibernate Envers to audit the values during create, update and delete operations. 
-For all entities except Car we have declare @Audited:
+For all entities except Car we have to declare @Audited:
 
 ```java
 @Entity
@@ -128,7 +129,8 @@ Hibernate Envers use REVINFO table to store revision information. A row is inser
 * revision number
 * revision creation timestamp
 
-In our example we want to store additional information like – username. The second step that needs to be performed is to implement listener - AuditRevisionListener - to populate additional field to RevisionEntitity.
+In our example we want to store additional information like – username, so we will need to extend DefaultRevisionEntity. 
+The second step that needs to be performed is to implement listener - AuditRevisionListener - to populate additional field to RevisionEntitity.
 
 ```java
 @Entity
@@ -146,7 +148,7 @@ public class AuditRevisionEntity extends DefaultRevisionEntity {
 }
 ```
 
-Below is the source code of listener:
+Below is the source code of listener. For demo purposes we just hardcoded the username:
 
 ```java
 public class AuditRevisionListener implements RevisionListener {
@@ -160,7 +162,7 @@ public class AuditRevisionListener implements RevisionListener {
 ```
 
 ## Setup history tables
-For all entities annotated with @Audited, we have to create respective database table. By default, Hibernate Envers uses following pattern for audit tables – “TABLENAME_AUD”, but it’s configurable to change “_AUD” suffix (by using @AuditTable or setting org.hibernate.envers.audit_table_suffix property). 
+For all entities annotated with @Audited, we have to create respective database table. By default, Hibernate Envers uses following pattern for audit tables – <TABLENAME>_AUD, but it’s configurable to change "_AUD" suffix (by using @AuditTable or setting org.hibernate.envers.audit_table_suffix property). 
 
 Each audit table will store:
 * the primary key of entity, 
@@ -283,6 +285,7 @@ then one revision will be assigned to multiple objects. In example below, revisi
 ### Update
 Example below shows simple update:
 ```
+curl -X PUT \
   http://localhost:8080/company/ \
   -H 'content-type: application/json' \
   -d '{
