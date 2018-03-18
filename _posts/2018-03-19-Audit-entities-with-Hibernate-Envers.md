@@ -278,7 +278,7 @@ then one revision will be assigned to multiple objects. In example below, revisi
 * employee,
 * department
 
-![create-extended](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/create_extended.png)
+[![create-extended](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/create_extended.png)](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/create_extended.png)
 
 ### Update
 Example below shows simple update:
@@ -320,7 +320,8 @@ Example below shows simple update:
 ```
 
 This time revision 14 was created. REVTYPE for Company is equal to 1 which means modification:
-![update-simple](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/update_simple.png)
+
+[![update-simple](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/update_simple.png)](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/update_simple.png)
 
 The same situation for multiple objects update:
 ```
@@ -346,7 +347,7 @@ curl -X PUT \
 }'
 ```
 
-![update-extended](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/update_extended.png)
+[![update-extended](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/update_extended.png)](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/update_extended.png)
 
 ### Delete
 Let’s see check behavior in case of delete operations:
@@ -382,14 +383,15 @@ curl -X DELETE http://localhost:8080/company/8
 ```
 
 New REVTYPE was tracked with value equal to 2:
-![delete-simple](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/delete_simple.png)
+
+[![delete-simple](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/delete_simple.png)](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/delete_simple.png)
 
 The same situation for multiple delete: 
 ```
 curl -X DELETE http://localhost:8080/company/10
 ```
 
-![delete-extended](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/delete_extended.png)
+[![delete-extended](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/delete_extended.png)](https://raw.githubusercontent.com/adamzareba/company-structure-hibernate-history/master/src/main/docs/delete_extended.png)
 
 ## Summary
 Hibernate Envers provides very easy and powerful mechanism for tracking business data. Introducing Envers to your project doesn’t need any business code modifications and refactoring – you can define behavior just with annotations.
