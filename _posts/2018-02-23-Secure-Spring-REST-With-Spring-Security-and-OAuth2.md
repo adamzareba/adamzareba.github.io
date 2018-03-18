@@ -11,6 +11,7 @@ In this post, we are going to demonstrate Spring Security + OAuth2 for securing 
 * Create a Resource Server.
 * Get an access token and a refresh token.
 * Get a secured Resource using an access token.
+
 To simplify the demonstration, we are going to combine the Authorization Server and Resource Server in the same project. As a grant type, we will use a password (we will use BCrypt to hash our passwords).
 
 Before you start you should familiarize yourself with OAuth2 fundamentals.
@@ -325,7 +326,7 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
 Some important points. We:
 
 * Defined the TokenStore bean to let Spring know to use the database for token operations.
-* Overrode the configure methods to use the custom UserDetailsService implementation, AuthenticationManager bean, and OAuth2 client’s password encoder.
+* Override the configure methods to use the custom UserDetailsService implementation, AuthenticationManager bean, and OAuth2 client’s password encoder.
 * Defined handler bean for authentication issues.
 * Enabled two endpoints for checking tokens ([/oauth/check_token](https://docs.spring.io/spring-security/oauth/apidocs/org/springframework/security/oauth2/provider/endpoint/CheckTokenEndpoint.html) and [/oauth/token_key](https://docs.spring.io/spring-security/oauth/apidocs/org/springframework/security/oauth2/provider/endpoint/TokenKeyEndpoint.html)) by overriding the configure (AuthorizationServerSecurityConfigureroauthServer) method.
 
