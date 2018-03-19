@@ -24,15 +24,7 @@ SELECT NAME, APPLE, GRAPE, YEAR
 
 returns data:
 
-| NAME              | APPLE     | GRAPE     | YEAR   |
-| ----------------- | --------- | --------- | ------ |
-| Fruit Garden Inc. | 1000      | 200000    | 2015   |
-| Fruit Garden Inc. | 5000      | 10000     | 2016   |
-| Fruit Garden Inc. | 10000     | 20000     | 2017   |
-| Village Fruits    | 7000      | 7000      | 2016   |
-| Village Fruits    | 5000      | 1000000   | 2017   |
-| Best Fruits Inc.  | 100000    | 1000000   | 2015   |
-| Best Fruits Inc.  | 200000    | 2000000   | 2017   |
+![select_all](https://raw.githubusercontent.com/adamzareba/adamzareba.github.io/master/images/posts/2018-03-20/select_all.PNG)
 
 ## Transform reports to separate rows - (CROSS) APPLY
 
@@ -56,22 +48,7 @@ SELECT COMPANY.NAME, FRUITS_BY_YEAR.*
 
 The output is following:
 
-| NAME              | FRUIT_YEAR     | AMOUNT    |
-| ----------------- | -------------- | --------- |
-| Fruit Garden Inc. | APPLES - 2015	 | 1000    	 |
-| Fruit Garden Inc. | GRAPES - 2015  | 200000    |
-| Fruit Garden Inc. | APPLES - 2016	 | 5000    	 |
-| Fruit Garden Inc. | GRAPES - 2016  | 10000     |
-| Fruit Garden Inc. | APPLES - 2017	 | 10000     |
-| Fruit Garden Inc. | GRAPES - 2017  | 20000     |
-| Village Fruits	| APPLES - 2016	 | 7000    	 |
-| Village Fruits	| GRAPES - 2016  | 7000    	 |
-| Village Fruits	| APPLES - 2017	 | 5000    	 |
-| Village Fruits	| GRAPES - 2017  | 1000000   |
-| Best Fruits Inc.  | APPLES - 2015	 | 100000    |
-| Best Fruits Inc.  | GRAPES - 2015  | 1000000   |
-| Best Fruits Inc.  | APPLES - 2017	 | 200000    |
-| Best Fruits Inc.  | GRAPES - 2017  | 2000000   |
+![select_cross_apply](https://raw.githubusercontent.com/adamzareba/adamzareba.github.io/master/images/posts/2018-03-20/select_cross_apply.PNG)
 
 ## Transform rows to columns - PIVOT
 
@@ -107,11 +84,7 @@ SELECT *
 
 The final report is:
 
-| NAME              | APPLES - 2015  | APPLES - 2016  | APPLES - 2017  | GRAPES - 2015  | GRAPES - 2016  | GRAPES - 2017  |
-| ----------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- |
-| Fruit Garden Inc. | 100000    	 | NULL           | 200000         | 1000000        | NULL           | 2000000        |
-| Village Fruits	| 1000           | 5000           | 10000          | 200000         | 10000          | 20000          |
-| Best Fruits Inc.  | NULL      	 | 7000           | 5000           | NULL           | 7000           | 1000000        |
+![select_pivot](https://raw.githubusercontent.com/adamzareba/adamzareba.github.io/master/images/posts/2018-03-20/select_pivot.PNG)
 
 ## Summary
 
